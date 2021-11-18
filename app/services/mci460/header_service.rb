@@ -30,7 +30,7 @@ module Mci460
 
     def prepare_data(data)
       '0' * 7 <<
-        data[:data_da_remessa].to_s[0..7].rjust(8, '0') <<
+        Date.current.strftime('%d%m%Y') <<
         'MCIF460 ' <<
         data[:codigo_mci_do_cliente_no_banco].to_s[0..8].rjust(9, '0') <<
         data[:numero_do_processo].to_s[0..4].rjust(5, '0') <<
