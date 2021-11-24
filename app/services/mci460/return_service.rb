@@ -26,7 +26,7 @@ module Mci460
 
     def header_info(file_content)
       line = file_content.lines.first
-      "Sequencial da remessa: #{line[26..30]} - Data da remessa: #{line[5..12].to_date}"
+      "Sequencial da remessa: #{line[26..30]} - Data da remessa: #{line[5..12]}"
     end
 
     def ocorrencia_cliente(code)
