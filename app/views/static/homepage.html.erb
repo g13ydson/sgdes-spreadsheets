@@ -16,30 +16,22 @@
       <div class="col-md-12">
         <div class="h-100 p-5 bg-light border rounded-3">
           <%= flash_messages %>
-          <%= form_with url: spreadsheet_creator_path do |f| %>
-            <div class="form-group">
-              <%= f.label :layout, 'Layout' %>
-              <%= f.select :layout, [["MCI 460", "mci460"]], {include_blank: "Selecione o layout"}, class: 'form-select', required: true %>
+          <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="remessa-tab" data-bs-toggle="pill" data-bs-target="#remessa" type="button" role="tab" aria-controls="remessa" aria-selected="true">Remessa</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="retorno-tab" data-bs-toggle="pill" data-bs-target="#retorno" type="button" role="tab" aria-controls="retorno" aria-selected="false">Retorno</button>
+            </li>
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="remessa" role="tabpanel" aria-labelledby="remessa-tab">
+              <%= render('static/remessa') %>
             </div>
-            <div class="form-group">
-              <%= f.label :sequencial, 'Sequencial da remessa' %>
-              <%= f.number_field :sequencial, class: 'form-control', required: true %>
-              <div id="" class="form-text">Número sequencial da remessa</div>
+            <div class="tab-pane fade" id="retorno" role="tabpanel" aria-labelledby="retorno-tab">
+              <%= render('static/retorno') %>
             </div>
-            <div class="form-group">
-              <%= f.label :spreadsheet_id, 'ID da planilha' %>
-              <%= f.text_field :spreadsheet_id, class: 'form-control', required: true %>
-              <div id="" class="form-text">ID da planilha pública do Google Spreadsheet Ex: https://docs.google.com/spreadsheets/d/<b>1_Mod7Wz4D5l2ltOrJkMZjCfvjOfGmfP41yGFUpUnP441</b></div>
-            </div>
-            <div class="form-group">
-              <%= f.label :file_name, 'Nome do arquivo' %>
-              <%= f.text_field :file_name, class: 'form-control', required: true %>
-              <div id="" class="form-text">Nome do arquivo que será enviado</div>
-            </div>
-            <div class="form-group mt-3">
-              <%= f.submit 'Enviar', class: 'btn btn-primary', data: { disable_with: "Aguarde..."} %>
-            </div>
-          <% end %>
+          </div>
         </div>
       </div>
     </div>
