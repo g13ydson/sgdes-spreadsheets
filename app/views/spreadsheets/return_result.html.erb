@@ -20,11 +20,11 @@
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">Resultado</th>
+                <th scope="col">Resultado para: <%= @return_result[:header_info] %></th>
               </tr>
             </thead>
             <tbody>
-              <% @error_msgs.each do |msg| %>
+              <% @return_result[:error_msgs].each do |msg| %>
                 <tr>
                   <th scope="row"><%= msg %></th>
                 </tr>

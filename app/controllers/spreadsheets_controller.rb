@@ -12,8 +12,8 @@ class SpreadsheetsController < ApplicationController
 
   def return
     result = ReturnInteractor.call(params: spreadsheet_return_params)
-    @error_msgs = result.error_msgs
-    if result.success? && @error_msgs.any?
+    @return_result = result.error_msgs
+    if result.success? && @return_result[:error_msgs].any?
       render :return_result
     else
       redirect_to root_path, alert: result.message

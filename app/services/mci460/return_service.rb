@@ -11,7 +11,7 @@ module Mci460
       file_content.each_line.with_index do |line, index|
         error_msgs << prepare_msg(line) unless index.zero?
       end
-      error_msgs
+      { error_msgs: error_msgs, header_info: header_info(file_content) }
     end
 
     def prepare_msg(line)
@@ -22,6 +22,11 @@ module Mci460
         error_msg << " - Ocorrência limite de crédito: #{ocorrencia_limite_credito(line[130..132])}"
       end
       error_msg
+    end
+
+    def header_info(file_content)
+      line = file_content.lines.first
+      "Sequencial da remessa: #{line[26..30]} - Data da remessa: #{line[5..12].to_date}"
     end
 
     def ocorrencia_cliente(code)
