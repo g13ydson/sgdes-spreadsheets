@@ -2,6 +2,7 @@ module Mci460
   class Register01Service < BaseSpreadsheetService
     def call
       header_mapping = {
+        'Tipo de pessoa' => :tipo_de_pessoa,
         'Número do CPF/CNPJ' => :numero_do_cpf,
         'Data de Nascimento' => :data_de_nascimento,
         'Nome do Cliente' => :nome_cliente,
@@ -19,7 +20,7 @@ module Mci460
     def prepare_data(data, row_number)
       row_number.to_s[0..4].rjust(5, '0') <<
         '01'  <<
-        '2'   <<
+        clear_string(data[:tipo_de_pessoa]).to_s[0..0].ljust(1, '0') <<
         '3'   <<
         clear_string(data[:numero_do_cpf]).to_s[0..13].ljust(14, '0') <<
         clear_string(data[:data_de_nascimento].to_s)[0..7].rjust(8, '0') <<
