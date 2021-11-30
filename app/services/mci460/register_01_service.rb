@@ -18,18 +18,19 @@ module Mci460
     private
 
     def prepare_data(data, row_number)
+      # byebug
       row_number.to_s[0..4].rjust(5, '0') <<
         '01'  <<
         clear_string(data[:tipo_de_pessoa]).to_s[0..0].ljust(1, '0') <<
         '3'   <<
-        clear_string(data[:numero_do_cpf]).to_s[0..13].ljust(14, '0') <<
+        clear_string(data[:numero_do_cpf]).to_s[0..13].rjust(14, '0') <<
         clear_string(data[:data_de_nascimento].to_s)[0..7].rjust(8, '0') <<
         clear_string(data[:nome_cliente].to_s)[0..59].ljust(60, ' ') <<
-        clear_string(data[:nome_personalizado_cliente].to_s)[0..24].rjust(25, ' ') <<
+        clear_string(data[:nome_personalizado_cliente].to_s)[0..24].ljust(25, ' ') <<
         ' ' <<
         '0' * 8 <<
-        data[:numero_programa_agil].to_s[0..8].ljust(9, ' ') <<
-        data[:prefixo_da_agencia_onde_a_conta_esta_sendo_aberta].to_s[0..3].ljust(4, ' ') <<
+        data[:numero_programa_agil].to_s[0..8].rjust(9, '0') <<
+        data[:prefixo_da_agencia_onde_a_conta_esta_sendo_aberta].to_s[0..3].rjust(4, '0') <<
         data[:digito_verificador_do_prefixo_da_agencia_onde_a_conta_esta_sendo_aberta].to_s[0..0].rjust(1, ' ') <<
         '01'  <<
         '9'   <<
