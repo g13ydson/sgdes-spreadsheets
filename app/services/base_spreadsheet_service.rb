@@ -9,10 +9,11 @@ class BaseSpreadsheetService
     new(*args, &block).call
   end
 
-  def clear_string(string)
-    return '' unless string
+  def clear_string(value)
+    return '' unless value
 
-    I18n.transliterate(string.tr('/,-.:%;)(\'', '').squeeze(' ')).upcase
+    value = strip_trailing_zero(value) if value.is_a?(Numeric)
+    I18n.transliterate(value.tr('/,-.:%;)(\'', '').squeeze(' ')).upcase
   end
 
   def extract_data(sheet, header_mapping)
@@ -30,5 +31,11 @@ class BaseSpreadsheetService
 
   def prepare_data
     raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
+  end
+
+  private
+
+  def strip_trailing_zero(value)
+    value.to_s.sub(/\.?0+$/, '')
   end
 end
