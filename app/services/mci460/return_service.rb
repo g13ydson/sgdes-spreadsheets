@@ -5,32 +5,37 @@ module Mci460
     end
 
     def call
-      error_msgs = []
+      errors = []
       file_content = File.read(@file_path)
       file_content.gsub!(/\r\n?/, "\n")
       file_content.each_line.with_index do |line, index|
-        error_msgs << prepare_msg(line) unless index.zero?
+        errors << prepare_errors(line) unless index.zero?
       end
-      { error_msgs: error_msgs, header_info: header_info(file_content) }
+      { errors: errors, header: prepare_header(file_content) }
     end
 
-    def prepare_msg(line)
-      error_msg = "SEQUENCIAL: #{line[0..4]} - CPF: #{line[5..18]} - Nº Conta: #{line[112..122]}"
-      error_msg << " - Ocorrência Cliente: #{ocorrencia_cliente(line[124..126])}" if line[124..126] != '000'
-      error_msg << " - Ocorrência conta: #{ocorrencia_conta(line[127..129])}" if  line[127..129] != '000'
-      if line[130..132] != '000'
-        error_msg << " - Ocorrência limite de crédito: #{ocorrencia_limite_credito(line[130..132])}"
-      end
-      error_msg
+    def prepare_errors(line)
+      {
+        sequencial: line[0..4],
+        cpf: line[5..18],
+        numero_conta: line[112..122],
+        digito_conta: line[123..123],
+        ocorrencia_cliente: ocorrencia_cliente(line[124..126]),
+        ocorrencia_conta: ocorrencia_conta(line[127..129]),
+        ocorrencia_limite_credito: ocorrencia_limite_credito(line[130..132])
+      }
     end
 
-    def header_info(file_content)
-      line = file_content.lines.first
-      "Sequencial da remessa: #{line[26..30]} - Data da remessa: #{line[5..12]}"
+    def prepare_header(line)
+      {
+        sequencial_remessa: line[26..30],
+        data_da_remessa: line[5..12]
+      }
     end
 
     def ocorrencia_cliente(code)
       {
+        '000' => '',
         '001' => 'tipo pessoa inválido',
         '002' => 'tipo CPF/CNPJ inválido',
         '003' => 'CPF/CNPJ inválido',
@@ -52,6 +57,7 @@ module Mci460
 
     def ocorrencia_conta(code)
       {
+        '000' => '',
         '001' => 'ind cheque especial inválido',
         '002' => 'setex/dv inválido',
         '003' => 'não atende ao credit scoring',
@@ -61,6 +67,7 @@ module Mci460
 
     def ocorrencia_limite_credito(code)
       {
+        '000' => '',
         '001' => 'cod estado civil inválido',
         '002' => 'cod natureza ocupação inválido',
         '003' => 'cod ocupação inválido',

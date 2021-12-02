@@ -13,8 +13,9 @@ class SpreadsheetsController < ApplicationController
   def return
     result = ReturnInteractor.call(params: spreadsheet_return_params)
     @return_result = result.error_msgs
-    if result.success? && @return_result[:error_msgs].any?
-      render :return_result
+
+    if result.success? && @return_result[:errors].any?
+      render 'return_result.xlsx.axlsx'
     else
       redirect_to root_path, alert: result.message
     end

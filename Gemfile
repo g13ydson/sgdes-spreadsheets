@@ -36,6 +36,9 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'cssbundling-rails', git: 'https://github.com/rails/cssbundling-rails.git', branch: 'main'
 gem 'jsbundling-rails', git: 'https://github.com/rails/jsbundling-rails.git', branch: 'main'
 
+gem 'axlsx'
+gem 'axlsx_rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
