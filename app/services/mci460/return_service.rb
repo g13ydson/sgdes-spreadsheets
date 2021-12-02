@@ -15,7 +15,7 @@ module Mci460
     end
 
     def prepare_msg(line)
-      error_msg = "SEQUENCIAL: #{line[0..4]} - CPF: #{line[5..18]} - Nº Conta: #{112..122}"
+      error_msg = "SEQUENCIAL: #{line[0..4]} - CPF: #{line[5..18]} - Nº Conta: #{line[112..122]}"
       error_msg << " - Ocorrência Cliente: #{ocorrencia_cliente(line[124..126])}" if line[124..126] != '000'
       error_msg << " - Ocorrência conta: #{ocorrencia_conta(line[127..129])}" if  line[127..129] != '000'
       if line[130..132] != '000'
