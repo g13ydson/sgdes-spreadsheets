@@ -16,9 +16,19 @@ class BaseSpreadsheetService
     I18n.transliterate(value.tr('/,-.:%;)(\'', '').squeeze(' ')).upcase
   end
 
-  def extract_data(sheet, header_mapping)
-    result = {}
-    line   = ''
+  def format_date(date)
+    return '' unless date
+
+    return date.strftime('%m%d%Y') if date.is_a?(Date)
+
+    clear_string(date)
+  end
+
+  def extract_data(sheet)
+    result          = {}
+    line            = ''
+    header_mapping  = Hash[sheet.first.map { |v| [v, v.parameterize.underscore.to_sym] }]
+
     (2..sheet.last_row).each do |row_number|
       data = SpreadsheetUtils.prepare_data(header_mapping, sheet, row_number)
       line = prepare_data(data, row_number - 1)
