@@ -24,14 +24,14 @@ module Mci460
       '0' * 7 <<
         Date.current.strftime('%d%m%Y') <<
         'MCIF460 ' <<
-        clear_string(data[:codigo_mci_do_cliente_no_banco])[0..8].rjust(9, '0') <<
-        clear_string(data[:numero_do_processo])[0..4].rjust(5, '0') <<
-        clear_string(@remessa)[0..4].rjust(5, '0') <<
+        data[:codigo_mci_do_cliente_no_banco][0..8].rjust(9, '0') <<
+        data[:numero_do_processo][0..4].rjust(5, '0') <<
+        @remessa[0..4].rjust(5, '0') <<
         '04' <<
-        clear_string(data[:prefixo_da_agencia_de_relacionamento])[0..3].ljust(4, '0') <<
-        clear_string(data[:digito_verificador_da_agencia_de_relacionamento])[0.0].rjust(1, '0') <<
-        clear_string(data[:numero_da_conta_do_cliente])[0..10].rjust(11, '0') <<
-        clear_string(data[:digito_verificador_da_conta_do_cliente])[0..0].rjust(1, '0') <<
+        data[:prefixo_da_agencia_de_relacionamento][0..3].ljust(4, '0') <<
+        data[:digito_verificador_da_agencia_de_relacionamento][0..0].rjust(1, '0') <<
+        data[:numero_da_conta_do_cliente][0..10].rjust(11, '0') <<
+        data[:digito_verificador_da_conta_do_cliente][0..0].rjust(1, '0') <<
         '1' <<
         "#{' ' * 88}\r\n"
     end

@@ -2,6 +2,7 @@ module Mci460
   class ReturnService < ApplicationService
     def initialize(params)
       @file_path = params[:return_file].path
+      @filename  = params[:return_file].original_filename
     end
 
     def call
@@ -11,7 +12,7 @@ module Mci460
       file_content.each_line.with_index do |line, index|
         errors << prepare_errors(line) unless index.zero?
       end
-      { errors: errors, header: prepare_header(file_content) }
+      { errors: errors, header: prepare_header(file_content), filename: @filename }
     end
 
     def prepare_errors(line)
