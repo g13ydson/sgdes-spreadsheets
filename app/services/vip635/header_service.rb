@@ -1,4 +1,4 @@
-module Mci460
+module Vip635
   class HeaderService < BaseSpreadsheetService
     attr_reader :sheet
 
@@ -23,17 +23,16 @@ module Mci460
     def prepare_data(data)
       '0' * 7 <<
         Date.current.strftime('%d%m%Y') <<
-        'MCIF460 ' <<
-        data[:codigo_mci_do_cliente_no_banco][0..8].rjust(9, '0') <<
+        'VIP635' <<
+        data[:codigo_interno_da_empresa_no_bb][0..8].rjust(9, '0') <<
         data[:numero_do_processo][0..4].rjust(5, '0') <<
         @remessa[0..4].rjust(5, '0') <<
-        '04' <<
-        data[:prefixo_da_agencia_de_relacionamento][0..3].rjust(4, '0') <<
-        data[:digito_verificador_da_agencia_de_relacionamento][0..0].rjust(1, '0') <<
+        '01' <<
+        data[:prefixo_da_agencia_cliente][0..3].rjust(4, '0') <<
+        data[:digito_verificador_da_agencia][0..0].rjust(1, '0') <<
         data[:numero_da_conta_do_cliente][0..10].rjust(11, '0') <<
-        data[:digito_verificador_da_conta_do_cliente][0..0].rjust(1, '0') <<
-        '1' <<
-        "#{' ' * 88}\r\n"
+        data[:digito_verificador_da_conta_corrente][0..0].rjust(1, '0') <<
+        "#{' ' * 89}\r\n"
     end
   end
 end

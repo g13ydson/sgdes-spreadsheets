@@ -3,7 +3,6 @@ module Mci460
     def initialize(params)
       @spreadsheet_id = params[:spreadsheet_id]
       @sequencial     = params[:sequencial]
-      @file_name      = params[:file_name]
     end
 
     def call
@@ -14,8 +13,8 @@ module Mci460
 
       registers[:header]      = Mci460::HeaderService.call(spreadsheet.sheet('HEADER'), @sequencial)
       registers[:register01]  = Mci460::Register01Service.call(spreadsheet.sheet('DETALHE'))
-      registers[:trailer]     = Mci460::RegisterTrailerService.call(registers)
-      Mci460::FileService.call(registers, @file_name)
+      registers[:trailer]     = RegisterTrailerService.call(registers)
+      Mci460::FileService.call(registers)
     end
   end
 end

@@ -2,9 +2,8 @@ module Mci460
   class FileService < ApplicationService
     attr_reader :registers
 
-    def initialize(registers, file_name)
+    def initialize(registers)
       @registers = registers
-      @file_name = file_name
     end
 
     def call

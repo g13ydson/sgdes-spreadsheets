@@ -1,6 +1,13 @@
 class SpreadsheetInteractor < ApplicationInteractor
   def call
-    context.txt_content = Mci460::MainService.call(context.params)
+    context.txt_content = case context.params[:layout]
+                          when 'vip635'
+                            Vip635::MainService.call(context.params)
+                          when 'mci460'
+                            Mci460::MainService.call(context.params)
+                          else
+                            context.fail!(message: 'Layout não encontrado')
+                          end
   rescue StandardError => e
     context.fail!(message: e.message)
   end
