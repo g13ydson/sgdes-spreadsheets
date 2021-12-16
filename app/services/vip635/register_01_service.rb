@@ -18,9 +18,10 @@ module Vip635
         data[:localizacao][0..8].ljust(9, ' ') <<
         ' ' * 9 <<
         data[:uso_da_empresa][0..16].rjust(17, '0') <<
-        data[:numero_do_prefixo_da_agencia_do_cliente_governo][0..3].rjust(4, '0') <<
-        data[:digito_verificador_do_prefixo_da_agencia_do_cliente_governo][0..0].rjust(1, '0') <<
-        ' ' * 11
+        '1618' << # Número do prefixo da agência do cliente governo
+        '7' << # Digito verificador do prefixo da agência do cliente governo
+        '411916051' << # CÓDIGO FIXO MCI
+        '  '
     end
   end
 end
