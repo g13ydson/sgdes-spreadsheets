@@ -13,7 +13,12 @@ module Mci460
 
       (2..sheet.last_row).each do |row_number|
         data = SpreadsheetUtils.prepare_data(header_mapping, sheet, row_number)
-        result << prepare_data(data)
+        data = normalize_values(data)
+        line = prepare_data(data)
+
+        raise "Quantidade de caracteres diferente de 150 #{line.size}" if line.size != 150
+
+        result = "#{line}\r\n"
       end
       result
     end
@@ -33,7 +38,7 @@ module Mci460
         data[:numero_da_conta_do_cliente][0..10].rjust(11, '0') <<
         data[:digito_verificador_da_conta_do_cliente][0..0].rjust(1, '0') <<
         '1' <<
-        "#{' ' * 88}\r\n"
+        (' ' * 88).to_s
     end
   end
 end
