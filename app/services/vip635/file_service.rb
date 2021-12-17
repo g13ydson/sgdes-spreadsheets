@@ -11,9 +11,9 @@ module Vip635
       doc << @registers[:header]
 
       doc << @registers[:register01].merge!(@registers[:register06], @registers[:register07],
-                                            @registers[:register11], @registers[:register12]) do |_key, v1, v2|
+                                            @registers[:register11]) do |_key, v1, v2|
         v1 + v2
-      end.values.join('')
+      end.values.join(@registers[:register12].values.join)
 
       doc << @registers[:trailer]
     end
