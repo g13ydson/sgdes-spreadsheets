@@ -1,12 +1,12 @@
-class BaseSpreadsheetService
+class BaseSpreadsheetService < ApplicationService
   attr_reader :sheet
 
   def initialize(sheet)
     @sheet = sheet
   end
 
-  def self.call(*args, &block)
-    new(*args, &block).call
+  def call
+    extract_data(sheet)
   end
 
   def extract_data(sheet)

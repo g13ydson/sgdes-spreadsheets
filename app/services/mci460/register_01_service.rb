@@ -1,11 +1,5 @@
 module Mci460
   class Register01Service < BaseSpreadsheetService
-    def call
-      extract_data(sheet)
-    end
-
-    private
-
     def prepare_data(data, row_number)
       row_number.to_s[0..4].rjust(5, '0') <<
         '01' <<
