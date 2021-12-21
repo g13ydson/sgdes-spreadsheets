@@ -1,7 +1,30 @@
 module Vip635
   class Register12Service < BaseSpreadsheetService
-    def call
-      extract_data(sheet)
+    attr_reader :sheet, :count
+
+    def initialize(sheet, count)
+      @sheet = sheet
+      @count = count
+    end
+
+    def self.call(*args, &block)
+      new(*args, &block).extract_data
+    end
+
+    def extract_data
+      result          = {}
+      line            = ''
+      header_mapping  = Hash[sheet.first.map { |v| [v, v.parameterize.underscore.to_sym] }]
+
+      (2..count + 1).each do |row_number|
+        data = row_data(header_mapping, sheet, row_number)
+        data = normalize_values(data)
+        line = prepare_data(data, row_number - 1)
+        raise "Quantidade de caracteres diferente de 150 #{line.size}" if line.size != 150
+
+        result[row_number] = "#{line}\r\n"
+      end
+      result
     end
 
     private

@@ -16,8 +16,8 @@ module Vip635
       registers[:register06]  = Vip635::Register06Service.call(spreadsheet.sheet('Registro detalhe 06'))
       registers[:register07]  = Vip635::Register07Service.call(spreadsheet.sheet('Registro detalhe 07'))
       registers[:register11]  = Vip635::Register11Service.call(spreadsheet.sheet('Registro detalhe 11'))
-      registers[:register12]  = Vip635::Register12Service.call(spreadsheet.sheet('Registro detalhe 12'))
-      registers[:trailer]     = RegisterTrailerService.call(registers)
+      registers[:register12]  = Vip635::Register12Service.call(spreadsheet.sheet('Registro detalhe 12'), registers[:register01].count)
+      registers[:trailer]     = Vip635::RegisterTrailerService.call(registers)
       Vip635::FileService.call(registers)
     end
   end
