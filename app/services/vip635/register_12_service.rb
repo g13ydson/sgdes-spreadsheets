@@ -7,8 +7,8 @@ module Vip635
       @count = count
     end
 
-    def self.call(*args, &block)
-      new(*args, &block).extract_data
+    def call
+      extract_data
     end
 
     def extract_data

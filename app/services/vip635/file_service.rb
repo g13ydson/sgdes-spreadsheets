@@ -8,14 +8,14 @@ module Vip635
 
     def call
       doc = ''
-      doc << @registers[:header]
+      doc << registers[:header]
 
-      doc << @registers[:register01].merge!(@registers[:register06], @registers[:register07],
-                                            @registers[:register11], @registers[:register12]) do |_key, v1, v2|
+      doc << registers[:register01].merge!(registers[:register06], registers[:register07],
+                                            registers[:register11], registers[:register12]) do |_key, v1, v2|
         v1 + v2
       end.values.join('')
 
-      doc << @registers[:trailer]
+      doc << registers[:trailer]
     end
   end
 end

@@ -1,6 +1,6 @@
 module Vip635
   class HeaderService < BaseSpreadsheetService
-    attr_reader :sheet
+    attr_reader :sheet, :remessa
 
     def initialize(sheet, remessa)
       @sheet = sheet
@@ -31,7 +31,7 @@ module Vip635
         'VIPF635 ' <<
         data[:codigo_interno_da_empresa_no_bb][0..8].rjust(9, '0') <<
         data[:numero_do_processo][0..4].rjust(5, '0') <<
-        @remessa[0..4].rjust(5, '0') <<
+        remessa[0..4].rjust(5, '0') <<
         '01' <<
         data[:prefixo_da_agencia_cliente][0..3].rjust(4, '0') <<
         data[:digito_verificador_da_agencia][0..0].rjust(1, '0') <<

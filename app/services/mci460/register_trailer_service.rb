@@ -1,16 +1,18 @@
 module Mci460
   class RegisterTrailerService < ApplicationService
+    attr_reader :registers
+
     def initialize(registers)
       @registers = registers
     end
 
     def call
-      prepare_data(@registers)
+      prepare_data
     end
 
     private
 
-    def prepare_data(registers)
+    def prepare_data
       register_1_count = registers[:register01].count
       '9999999' <<
         register_1_count.to_s[0..4].rjust(5, '0') <<

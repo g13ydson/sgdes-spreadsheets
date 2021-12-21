@@ -6,10 +6,10 @@ class BaseSpreadsheetService < ApplicationService
   end
 
   def call
-    extract_data(sheet)
+    extract_data
   end
 
-  def extract_data(sheet)
+  def extract_data
     result          = {}
     line            = ''
     header_mapping  = Hash[sheet.first.map { |v| [v, v.parameterize.underscore.to_sym] }]

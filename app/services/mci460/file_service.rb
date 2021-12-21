@@ -8,9 +8,9 @@ module Mci460
 
     def call
       doc = ''
-      doc << @registers[:header]
-      doc << @registers[:register01].values.join('')
-      doc << @registers[:trailer]
+      doc << registers[:header]
+      doc << registers[:register01].values.join('')
+      doc << registers[:trailer]
     end
   end
 end

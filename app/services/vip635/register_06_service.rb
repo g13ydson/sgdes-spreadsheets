@@ -1,11 +1,5 @@
 module Vip635
   class Register06Service < BaseSpreadsheetService
-    def call
-      extract_data(sheet)
-    end
-
-    private
-
     def prepare_data(data, row_number)
       row_number[0..4].to_s.rjust(5, '0') <<
         '06' <<

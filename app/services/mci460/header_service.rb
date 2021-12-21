@@ -1,6 +1,6 @@
 module Mci460
   class HeaderService < BaseSpreadsheetService
-    attr_reader :sheet
+    attr_reader :sheet, :remessa
 
     def initialize(sheet, remessa)
       @sheet = sheet
@@ -31,7 +31,7 @@ module Mci460
         'MCIF460 ' <<
         data[:codigo_mci_do_cliente_no_banco][0..8].rjust(9, '0') <<
         data[:numero_do_processo][0..4].rjust(5, '0') <<
-        @remessa[0..4].rjust(5, '0') <<
+        remessa[0..4].rjust(5, '0') <<
         '04' <<
         data[:prefixo_da_agencia_de_relacionamento][0..3].rjust(4, '0') <<
         data[:digito_verificador_da_agencia_de_relacionamento][0..0].rjust(1, '0') <<
