@@ -37,7 +37,7 @@ class BaseSpreadsheetService
   private
 
   def normalize_values(data)
-    data.deep_transform_values { |value| format_date(clear_string(value)) }
+    data.deep_transform_values { |value| clear_string(format_date(value)) }
   end
 
   def clear_string(value)
@@ -50,7 +50,7 @@ class BaseSpreadsheetService
   def format_date(value)
     return '' unless value
 
-    return value.strftime('%m%d%Y') if value.is_a?(Date)
+    return value.strftime('%d%m%Y') if value.is_a?(Date)
 
     value
   end
