@@ -10,8 +10,8 @@ module Vip635
       row_number[0..4].to_s.rjust(5, '0') <<
         '11' <<
         data[:cnpj_do_centro_de_custo][0..13].rjust(14, '0') <<
-        data[:numero_do_centro_de_custo][0..8].rjust(9, '0') <<
-        data[:numero_da_unidade_de_faturamento][0..8].rjust(9, '0') <<
+        '000000010' << # Centro de custo
+        '000000000' << # Unidade de faturamento
         data[:nome_personalizado_do_portador_para_o_cartao][0..18].ljust(19, ' ') <<
         data[:limite_do_portador][0..8].rjust(9, '0') <<
         data[:codigo_do_endereco_para_envio_do_extrato_cartao][0..0].rjust(1, '0') <<
