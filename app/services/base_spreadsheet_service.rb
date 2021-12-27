@@ -43,7 +43,7 @@ class BaseSpreadsheetService < ApplicationService
   def clear_string(value)
     return '' unless value
 
-    value = strip_trailing_zero(value) if value.is_a?(Numeric)
+    value = value.to_s if value.is_a?(Numeric)
     I18n.transliterate(value.tr('/,-.:%;)(\'', '').squeeze(' ')).upcase
   end
 
