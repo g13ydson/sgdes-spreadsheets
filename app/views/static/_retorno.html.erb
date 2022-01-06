@@ -1,7 +1,7 @@
 <%= form_with url: spreadsheet_return_path do |f| %>
   <div class="form-group">
     <%= f.label :layout, 'Layout' %>
-    <%= f.select :layout, [["MCI 460", "mci460"]], {include_blank: "Selecione o layout"}, class: 'form-select', required: true %>
+    <%= f.select :layout, [["MCI 460", "mci460"], ["VIPF 635", "vip635"]], {include_blank: "Selecione o layout"}, class: 'form-select', required: true %>
   </div>
   <div class="form-group mt-3">
     <%= f.label :return_file, 'Arquivo de retorno' %>

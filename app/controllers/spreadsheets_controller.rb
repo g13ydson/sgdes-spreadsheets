@@ -15,7 +15,11 @@ class SpreadsheetsController < ApplicationController
     @return_result = result.error_msgs
 
     if result.success? && @return_result[:errors].any?
-      render 'return_result.xlsx.axlsx'
+      if params[:layout] == 'mci460'
+        render 'spreadsheets/mci460/return_result.xlsx.axlsx'
+      elsif params[:layout] == 'vip635'
+        render 'spreadsheets/vip635/return_result.xlsx.axlsx'
+      end
     else
       redirect_to root_path, alert: result.message
     end
@@ -30,6 +34,6 @@ class SpreadsheetsController < ApplicationController
   end
 
   def spreadsheet_return_params
-    params.permit(:return_file)
+    params.permit(:layout, :return_file)
   end
 end
