@@ -20,6 +20,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'interactor', '~> 3.0'
 
 gem 'awesome_print'
+gem 'cpf_cnpj'
 gem 'roo'
 
 # Use Redis adapter to run Action Cable in production

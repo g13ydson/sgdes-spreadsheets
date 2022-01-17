@@ -2,8 +2,8 @@ wb = xlsx_package.workbook
 
 wb.add_worksheet(name: "Users") do |sheet|
   
-  sheet.add_row ['Sequencial da Remessa', 'Data da Remessa']
-  sheet.add_row [@return_result[:header][:sequencial_remessa], @return_result[:header][:data_da_remessa]]
+  sheet.add_row ['Numero da Remessa', 'Sequencial da Remessa', 'Data da Remessa']
+  sheet.add_row [@return_result[:header][:numero_remessa], @return_result[:header][:sequencial_remessa], @return_result[:header][:data_da_remessa]]
 
   sheet.add_row ['Sequencial', 'CPF/CNPJ', 'Ocorrencia 1', 'Ocorrencia 2', 'Ocorrencia 3']
   @return_result[:errors].each do |error|

@@ -1,11 +1,15 @@
 module Vip635
   class Register01Service < BaseSpreadsheetService
     def prepare_data(data, row_number)
+      cpf = data[:numero_do_cpf][0..13]
+
+      raise "CPF: #{cpf} inválido!" unless CPF.valid?(cpf)
+
       row_number[0..4].to_s.rjust(5, '0') <<
         '01'  <<
         '0'   <<
         '1'   <<
-        data[:numero_do_cpf][0..13].rjust(14, '0') <<
+        cpf.rjust(14, '0') <<
         data[:data_de_nascimento][0..7].rjust(8, '0') <<
         data[:nome_completo][0..59].ljust(60, ' ') <<
         data[:matricula][0..7].ljust(8, ' ') <<
