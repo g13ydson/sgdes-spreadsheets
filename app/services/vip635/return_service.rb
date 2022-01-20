@@ -26,7 +26,6 @@ module Vip635
     end
 
     def prepare_header(line)
-      byebug
       {
         numero_remessa: line[21..25],
         sequencial_remessa: line[26..30],
