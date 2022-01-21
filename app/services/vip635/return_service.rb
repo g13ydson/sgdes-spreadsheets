@@ -17,6 +17,8 @@ module Vip635
 
     def prepare_errors(line)
       {
+        numero_remessa_origem: line[1..5],
+        uso_exclusivo_bb: line[93..109],
         sequencial: line[6..10],
         cpf: line[11..24],
         ocorrencia1: ocorrencia(line[110..112]),

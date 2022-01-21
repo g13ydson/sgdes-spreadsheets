@@ -5,8 +5,8 @@ wb.add_worksheet(name: "Users") do |sheet|
   sheet.add_row ['Numero da Remessa', 'Sequencial da Remessa', 'Data da Remessa']
   sheet.add_row [@return_result[:header][:numero_remessa], @return_result[:header][:sequencial_remessa], @return_result[:header][:data_da_remessa]]
 
-  sheet.add_row ['Sequencial', 'CPF/CNPJ', 'Ocorrencia 1', 'Ocorrencia 2', 'Ocorrencia 3']
+  sheet.add_row ['Sequencial', 'Número da Remessa de Origem', 'Exclusivo BB', 'CPF/CNPJ', 'Ocorrencia 1', 'Ocorrencia 2', 'Ocorrencia 3']
   @return_result[:errors].each do |error|
-    sheet.add_row [error[:sequencial], error[:cpf], error[:ocorrencia1], error[:ocorrencia2], error[:ocorrencia3]]  
+    sheet.add_row [error[:sequencial], error[:numero_remessa_origem], error[:uso_exclusivo_bb], error[:cpf], error[:ocorrencia1], error[:ocorrencia2], error[:ocorrencia3]]  
   end
 end
