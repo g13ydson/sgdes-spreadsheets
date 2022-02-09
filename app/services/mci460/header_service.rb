@@ -32,7 +32,7 @@ module Mci460
         data[:codigo_mci_do_cliente_no_banco][0..8].rjust(9, '0') <<
         data[:numero_do_processo][0..4].rjust(5, '0') <<
         remessa[0..4].rjust(5, '0') <<
-        '04' <<
+        '03' <<
         data[:prefixo_da_agencia_de_relacionamento][0..3].rjust(4, '0') <<
         data[:digito_verificador_da_agencia_de_relacionamento][0..0].rjust(1, '0') <<
         data[:numero_da_conta_do_cliente][0..10].rjust(11, '0') <<
