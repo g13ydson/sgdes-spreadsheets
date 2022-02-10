@@ -3,7 +3,7 @@ class SpreadsheetsController < ApplicationController
     result = SpreadsheetInteractor.call(params: spreadsheet_params)
 
     if result.success?
-      send_data(result.txt_content, type: 'text/plain', disposition: 'attachment',
+      send_data(result.txt_content.encode("cp1252"), type: 'text/plain', disposition: 'attachment',
                                     filename: "#{spreadsheet_params[:file_name]}.txt")
     else
       redirect_to root_path, alert: result.message
@@ -26,6 +26,7 @@ class SpreadsheetsController < ApplicationController
   end
 
   def return_result; end
+  
 
   private
 

@@ -12,7 +12,7 @@ module Mci460
         ' ' <<
         ' ' * 17 << # uso empresa
         data[:prefixo_da_agencia_onde_a_conta_esta_sendo_aberta][0..3].rjust(4, '0') << # agencia
-        data[:digito_verificador_do_prefixo_da_agencia_onde_a_conta_esta_sendo_aberta][0..0].rjust(1, ' ') << # digito agencia
+        data[:digito_verificador_do_prefixo_da_agencia_onde_a_conta_esta_sendo_aberta][0..0].ljust(1, ' ') << # digito agencia
         '01'  << # grupo setex
         '9'   << # dv grupo setex
         ' ' * 8

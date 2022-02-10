@@ -18,7 +18,7 @@ module Mci460
 
         raise "Quantidade de caracteres diferente de 150 #{line.size}" if line.size != 150
 
-        result = "#{line}\r\n"
+        result = "#{line}\n"
       end
       result
     end

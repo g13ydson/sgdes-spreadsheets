@@ -20,7 +20,7 @@ class BaseSpreadsheetService < ApplicationService
       line = prepare_data(data, row_number - 1)
       raise "Quantidade de caracteres diferente de 150 #{line.size}" if line.size != 150
 
-      result[row_number] = "#{line}\r\n"
+      result[row_number] = "#{line}\n"
     end
     result
   end
