@@ -12,7 +12,7 @@ module Vip634
       )
 
       registers[:header] = Vip634::HeaderService.call(spreadsheet.sheet("HEADER"), @sequencial)
-      registers[:register01] = Vip634::Register01Service.call(spreadsheet.sheet("DETALHE"))
+      registers[:register15] = Vip634::Register15Service.call(spreadsheet.sheet("DETALHE"))
       registers[:trailer] = Vip634::RegisterTrailerService.call(registers)
       Vip634::FileService.call(registers)
     end

@@ -5,6 +5,8 @@ class SpreadsheetInteractor < ApplicationInteractor
                             Vip635::MainService.call(context.params)
                           when "mci460"
                             Mci460::MainService.call(context.params)
+                          when "vip634"
+                            Vip634::MainService.call(context.params)
                           else
                             context.fail!(message: "Layout não encontrado")
     end

@@ -9,7 +9,7 @@ module Vip634
     def call
       doc = ""
       doc << registers[:header]
-      doc << registers[:register01].values.join("")
+      doc << registers[:register15].values.join("")
       doc << registers[:trailer]
     end
   end

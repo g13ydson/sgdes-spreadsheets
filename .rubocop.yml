@@ -3,10 +3,6 @@ require: standard
 inherit_gem:
   standard: config/base.yml
 
-inherit_from:
-  - .rubocop.rails.yml
-  - .rubocop.performance.yml
-
 AllCops:
   TargetRubyVersion: 2.7
   NewCops: enable
