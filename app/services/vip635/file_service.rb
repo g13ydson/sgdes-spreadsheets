@@ -7,12 +7,12 @@ module Vip635
     end
 
     def call
-      doc = ''
+      doc = ""
       doc << registers[:header]
       doc << registers[:register01].merge!(registers[:register06], registers[:register07],
-                                           registers[:register11], registers[:register12]) do |_key, o, n|
+        registers[:register11], registers[:register12]) do |_key, o, n|
         o + n
-      end.values.join('')
+      end.values.join("")
 
       doc << registers[:trailer]
     end

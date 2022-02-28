@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'boot'
+require_relative "boot"
 
 %w[
   action_controller/railtie

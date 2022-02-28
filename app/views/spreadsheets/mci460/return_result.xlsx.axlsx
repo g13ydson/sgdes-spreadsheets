@@ -1,12 +1,11 @@
 wb = xlsx_package.workbook
 
 wb.add_worksheet(name: "Users") do |sheet|
-  
-  sheet.add_row ['Sequencial da Remessa', 'Data da Remessa']
+  sheet.add_row ["Sequencial da Remessa", "Data da Remessa"]
   sheet.add_row [@return_result[:header][:sequencial_remessa], @return_result[:header][:data_da_remessa]]
 
-  sheet.add_row ['Sequencial', 'CPF/CNPJ', 'Conta', 'Digito', 'Ocorrencia do Cliente', 'Ocorrencia da Conta', 'Ocorrencia Limite de Crédito']
+  sheet.add_row ["Sequencial", "CPF/CNPJ", "Conta", "Digito", "Ocorrencia do Cliente", "Ocorrencia da Conta", "Ocorrencia Limite de Crédito"]
   @return_result[:errors].each do |error|
-    sheet.add_row [error[:sequencial], error[:cpf], error[:numero_conta], error[:digito_conta], error[:ocorrencia_cliente], error[:ocorrencia_conta], error[:ocorrencia_limite_credito]]  
+    sheet.add_row [error[:sequencial], error[:cpf], error[:numero_conta], error[:digito_conta], error[:ocorrencia_cliente], error[:ocorrencia_conta], error[:ocorrencia_limite_credito]]
   end
 end

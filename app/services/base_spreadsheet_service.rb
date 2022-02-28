@@ -10,9 +10,9 @@ class BaseSpreadsheetService < ApplicationService
   end
 
   def extract_data
-    result          = {}
-    line            = ''
-    header_mapping  = Hash[sheet.first.map { |v| [v, v.parameterize.underscore.to_sym] }]
+    result = {}
+    line = ""
+    header_mapping = sheet.first.map { |v| [v, v.parameterize.underscore.to_sym] }.to_h
 
     (2..sheet.last_row).each do |row_number|
       data = row_data(header_mapping, sheet, row_number)
@@ -30,7 +30,7 @@ class BaseSpreadsheetService < ApplicationService
   end
 
   def row_data(header_mapping, sheet, row_number)
-    data = Hash[[sheet.row(1), sheet.row(row_number)].transpose]
+    data = [sheet.row(1), sheet.row(row_number)].transpose.to_h
     header_mapping.values.zip(data.values_at(*header_mapping.keys)).to_h
   end
 
@@ -41,21 +41,21 @@ class BaseSpreadsheetService < ApplicationService
   end
 
   def clear_string(value)
-    return '' unless value
+    return "" unless value
 
     value = value.to_s if value.is_a?(Numeric)
-    I18n.transliterate(value.tr('/,-.:%;)(\'', '').squeeze(' ')).upcase
+    I18n.transliterate(value.tr("/,-.:%;)('", "").squeeze(" ")).upcase
   end
 
   def format_date(value)
-    return '' unless value
+    return "" unless value
 
-    return value.strftime('%d%m%Y') if value.is_a?(Date)
+    return value.strftime("%d%m%Y") if value.is_a?(Date)
 
     value
   end
 
   def strip_trailing_zero(value)
-    value.to_s.sub(/\.?0+$/, '')
+    value.to_s.sub(/\.?0+$/, "")
   end
 end

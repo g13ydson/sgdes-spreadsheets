@@ -1,4 +1,4 @@
-module Mci460
+module Vip634
   class ReturnService < ApplicationService
     def initialize(params)
       @file_path = params[:return_file].path

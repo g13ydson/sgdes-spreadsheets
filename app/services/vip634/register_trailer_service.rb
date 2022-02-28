@@ -1,4 +1,4 @@
-module Mci460
+module Vip634
   class RegisterTrailerService < ApplicationService
     attr_reader :registers
 

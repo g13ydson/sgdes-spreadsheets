@@ -1,4 +1,4 @@
-module Mci460
+module Vip634
   class MainService < ApplicationService
     def initialize(params)
       @spreadsheet_id = params[:spreadsheet_id]
@@ -11,10 +11,10 @@ module Mci460
         "https://docs.google.com/spreadsheets/d/#{@spreadsheet_id}/export\?format\=xlsx", extension: :xlsx
       )
 
-      registers[:header] = Mci460::HeaderService.call(spreadsheet.sheet("HEADER"), @sequencial)
-      registers[:register01] = Mci460::Register01Service.call(spreadsheet.sheet("DETALHE"))
-      registers[:trailer] = Mci460::RegisterTrailerService.call(registers)
-      Mci460::FileService.call(registers)
+      registers[:header] = Vip634::HeaderService.call(spreadsheet.sheet("HEADER"), @sequencial)
+      registers[:register01] = Vip634::Register01Service.call(spreadsheet.sheet("DETALHE"))
+      registers[:trailer] = Vip634::RegisterTrailerService.call(registers)
+      Vip634::FileService.call(registers)
     end
   end
 end

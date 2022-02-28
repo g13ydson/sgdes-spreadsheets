@@ -1,4 +1,4 @@
-module Mci460
+module Vip634
   class Register01Service < BaseSpreadsheetService
     def prepare_data(data, row_number)
       row_number.to_s[0..4].rjust(5, "0") <<
@@ -14,10 +14,10 @@ module Mci460
         data[:numero_do_programa_do_gestao_agil][0..8].rjust(9, "0") <<
         data[:prefixo_da_agencia_onde_a_conta_esta_sendo_aberta][0..3].rjust(4, "0") <<
         data[:digito_verificador_do_prefixo_da_agencia_onde_a_conta_esta_sendo_aberta][0..0].rjust(1, " ") <<
-        "01" \
-        "9" \
-        "000" \
-        "01" \
+        "01" <<
+        "9" <<
+        "000" <<
+        "01" <<
         "000"
     end
   end
