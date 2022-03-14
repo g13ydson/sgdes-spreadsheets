@@ -45,7 +45,7 @@ class BaseSpreadsheetService < ApplicationService
     return "" unless value
 
     value = value.to_s if value.is_a?(Numeric)
-    I18n.transliterate(value.tr("/,-.:%;)('", "").squeeze(" ")).upcase
+    I18n.transliterate(value.tr("/,-.:%;´°)('", "").squeeze(" ")).strip.upcase
   end
 
   def format_date(value)
