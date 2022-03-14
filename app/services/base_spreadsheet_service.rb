@@ -17,7 +17,8 @@ class BaseSpreadsheetService < ApplicationService
     (2..sheet.last_row).each do |row_number|
       data = row_data(header_mapping, sheet, row_number)
       data = normalize_values(data)
-      line = prepare_data(data, row_number - 1)
+      line = prepare_data(data, (row_number - 1).to_s)
+
       raise "Quantidade de caracteres diferente de 150 #{line.size}" if line.size != 150
 
       result[row_number] = "#{line}\n"

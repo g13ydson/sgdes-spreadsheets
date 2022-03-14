@@ -1,7 +1,7 @@
 module Vip635
   class Register06Service < BaseSpreadsheetService
     def prepare_data(data, row_number)
-      row_number[0..4].to_s.rjust(5, "0") <<
+      row_number[0..4].rjust(5, "0") <<
         "06" <<
         data[:endereco_do_portador][0..59].ljust(60, " ") <<
         data[:bairro_do_portador][0..20].ljust(30, " ") <<

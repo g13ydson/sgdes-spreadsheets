@@ -1,7 +1,7 @@
 module Mci460
   class Register01Service < BaseSpreadsheetService
     def prepare_data(data, row_number)
-      row_number.to_s[0..4].rjust(5, "0") <<
+      row_number[0..4].rjust(5, "0") <<
         "01" <<
         data[:tipo_de_pessoa][0..0].ljust(1, "0") <<
         "3" <<

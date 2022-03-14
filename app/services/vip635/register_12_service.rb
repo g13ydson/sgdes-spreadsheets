@@ -19,7 +19,7 @@ module Vip635
       (2..count + 1).each do |row_number|
         data = row_data(header_mapping, sheet, 2)
         data = normalize_values(data)
-        line = prepare_data(data, row_number - 1)
+        line = prepare_data(data, (row_number - 1).to_s)
         raise "Quantidade de caracteres diferente de 150 #{line.size}" if line.size != 150
 
         result[row_number] = "#{line}\n"
@@ -30,7 +30,7 @@ module Vip635
     private
 
     def prepare_data(data, row_number)
-      row_number[0..4].to_s.rjust(5, "0") <<
+      row_number[0..4].rjust(5, "0") <<
         "12" << # TIPO DE DETALHE. CONSTANTE E IGUAL A 12 (DOZE)
         data[:codigo_do_tipo_do_cartao][0..1].rjust(2, "0") <<
         data[:dia_de_vencimento_da_fatura][0..1].rjust(2, "0") <<

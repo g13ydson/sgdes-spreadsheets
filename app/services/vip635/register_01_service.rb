@@ -5,7 +5,7 @@ module Vip635
 
       raise "CPF: #{cpf} inválido!" unless CPF.valid?(cpf)
 
-      row_number[0..4].to_s.rjust(5, "0") <<
+      row_number[0..4].rjust(5, "0") <<
         "01" <<
         "0" <<
         "1" <<
