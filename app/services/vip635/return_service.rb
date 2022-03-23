@@ -21,6 +21,8 @@ module Vip635
         uso_exclusivo_bb: line[93..109],
         sequencial: line[6..10],
         cpf: line[11..24],
+        numero_cartao: line[119..134],
+        sequencial_conta_corrente: line[192..196],
         ocorrencia1: ocorrencia(line[110..112]),
         ocorrencia2: ocorrencia(line[113..115]),
         ocorrencia3: ocorrencia(line[116..118])
