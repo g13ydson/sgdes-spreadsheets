@@ -17,8 +17,8 @@ module Vip634
         line = prepare_data(data)
 
         raise "Quantidade de caracteres diferente de 150 #{line.size}" if line.size != 150
-
-        result = "#{line}\n"
+        p line
+        result = "#{line}\r\n"
       end
       result
     end
