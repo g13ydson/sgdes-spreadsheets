@@ -19,6 +19,8 @@ class SpreadsheetsController < ApplicationController
         render "spreadsheets/mci460/return_result.xlsx.axlsx"
       elsif params[:layout] == "vip635"
         render "spreadsheets/vip635/return_result.xlsx.axlsx"
+      elsif params[:layout] == "vip433"
+        render "spreadsheets/vip433/return_result.xlsx.axlsx"
       end
     else
       redirect_to root_path, alert: result.message

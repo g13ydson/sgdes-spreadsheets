@@ -5,6 +5,8 @@ class ReturnInteractor < ApplicationInteractor
                            Vip635::ReturnService.call(context.params)
                          when "mci460"
                            Mci460::ReturnService.call(context.params)
+                         when "vip433"
+                           Vip433::ReturnService.call(context.params)
                          else
                            context.fail!(message: "Layout não encontrado")
     end
