@@ -4,14 +4,14 @@ module Vip634
       result = {}
       line = ""
       header_mapping = sheet.first.map { |v| [v, v.parameterize.underscore.to_sym] }.to_h
-  
+
       (2..sheet.last_row).each do |row_number|
         data = row_data(header_mapping, sheet, row_number)
         data = normalize_values(data)
         line = prepare_data(data, (row_number - 1).to_s)
-  
+
         raise "Quantidade de caracteres diferente de 150 #{line.size}" if line.size != 150
-  
+
         result[row_number] = "#{line}\r\n"
       end
       result

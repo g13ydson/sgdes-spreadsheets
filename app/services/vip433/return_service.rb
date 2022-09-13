@@ -23,19 +23,19 @@ module Vip433
         numero_do_cartao: line[1..19],
         cpf_portador_cartao: line[470..480],
         nome_portador_cartao: line[450..469],
-        data_confirmacao_transacao: line[20..27],
+        data_confirmacao_transacao: Date.strptime(line[20..27], "%d%m%Y").strftime("%d/%m/%Y"),
         razao_social: line[99..124],
         cidade: line[125..138],
         uf: line[139..142],
-        valor_transacao_original: line[158..173],
-        valor_transacao_nacional: line[174..189],
-        data_transacao: line[202..209],
+        valor_transacao_original: to_reais(line[158..173]),
+        valor_transacao_nacional: to_reais(line[174..189]),
+        data_transacao: Date.strptime(line[202..209], "%d%m%Y").strftime("%d/%m/%Y"),
         horario: line[534..541],
         codigo_atividade: line[195..199],
         debito_credito: line[338..339],
         descricao: line[340..389],
         nome_atividade_fornecedor: line[491..519],
-        cpf_cnpj: line[520..533]
+        cpf_cnpj: format_cpf_cnpj(line[520..533])
       }
     end
 
@@ -46,6 +46,19 @@ module Vip433
         data_da_remessa: line[16..23],
         somatorio: line[36..51]
       }
+    end
+
+    private
+
+    def format_cpf_cnpj(number)
+      return CNPJ.new(number).formatted if CNPJ.valid?(number)
+      cpf_number = number[-11..14]
+      return CPF.new(cpf_number).formatted if CPF.valid?(cpf_number)
+      number
+    end
+
+    def to_reais(number)
+      Money.from_cents(number, "BRL").format
     end
   end
 end
