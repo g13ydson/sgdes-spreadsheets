@@ -4,8 +4,11 @@ wb.add_worksheet(name: "Users") do |sheet|
   sheet.add_row ["Numero da Remessa", "Data da Remessa", "Quantidade de Registros", "Somatório das Transações de Faturas"]
   sheet.add_row [@return_result[:header][:numero_remessa], @return_result[:header][:data_da_remessa], @return_result[:header][:quantidade_registros], @return_result[:header][:somatorio]]
 
-  sheet.add_row ["Número do Cartão", "CPF do portador", "Nome do Portador", "Data de Confirmação da Transação", "Razão Social", "Cidade", "UF", "Valor da Transação Original", "Valor da Transação Nacional", "Data da Transação", "Horário", "Código da Atividade", "Debito ou Crédito", "Descrição", "Atividade do Fornecedor", "CPF/CNPJ"]
+  sheet.add_row ["Número do Cartão", "CPF do portador", "Nome do Portador", "Código INEP", "Localização Portador", "Nome centro de custo", "Nome unidade faturamento", "Data de Confirmação da Transação", "Razão Social", "Nome do Estabelecimento", "Cidade", "UF", "Valor da Transação Original", "Valor da Transação Nacional", "Data da Transação", "Horário", "Código da Atividade", "Debito ou Crédito", "Descrição", "Atividade do Fornecedor", "CPF/CNPJ"]
   @return_result[:errors].each do |error|
-    sheet.add_row [error[:numero_do_cartao], error[:cpf_portador_cartao], error[:nome_portador_cartao], error[:data_confirmacao_transacao], error[:razao_social], error[:cidade], error[:uf], error[:valor_transacao_original], error[:valor_transacao_nacional], error[:data_transacao], error[:horario], error[:codigo_atividade], error[:debito_credito], error[:descricao], error[:nome_atividade_fornecedor], error[:cpf_cnpj]]
+    sheet.add_row(
+      [error[:numero_do_cartao], error[:cpf_portador_cartao].to_s, error[:nome_portador_cartao], error[:codigo_inep], error[:localizacao_portador_cartao], error[:nome_centro_custo], error[:nome_unidade_faturamento], error[:data_confirmacao_transacao], error[:razao_social], error[:nome_estabelecimento], error[:cidade], error[:uf], error[:valor_transacao_original], error[:valor_transacao_nacional], error[:data_transacao], error[:horario], error[:codigo_atividade], error[:debito_credito], error[:descricao], error[:nome_atividade_fornecedor], error[:cpf_cnpj]],
+      types: [:string, :string],
+      )
   end
 end

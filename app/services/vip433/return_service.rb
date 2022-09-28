@@ -23,8 +23,13 @@ module Vip433
         numero_do_cartao: line[1..19],
         cpf_portador_cartao: line[470..480],
         nome_portador_cartao: line[450..469],
+        codigo_inep: codigo_inep(line[450..469]),
+        localizacao_portador_cartao: line[243..251],
+        nome_centro_custo: line[410..429],
+        nome_unidade_faturamento: line[430..449],
         data_confirmacao_transacao: Date.strptime(line[20..27], "%d%m%Y").strftime("%d/%m/%Y"),
         razao_social: line[99..124],
+        nome_estabelecimento: line[99..124],
         cidade: line[125..138],
         uf: line[139..142],
         valor_transacao_original: to_reais(line[158..173]),
@@ -59,6 +64,10 @@ module Vip433
 
     def to_reais(number)
       Money.from_cents(number, "BRL").format
+    end
+
+    def codigo_inep(value)
+      value.scan(/\d+/).first
     end
   end
 end
